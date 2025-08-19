@@ -19,33 +19,30 @@ let operandOne;
 let operandTwo;
 let operator;
 
-const regexNum = /[\d]/g;
-const regexOperators = /[+\-*/]/g;
-const regexChange = /\d[+\-*/]\d/g;
-const regexDividebyZero = /\d\/0/g;
+const regexNum = /[\d]/;
+const regexOperators = /[+\-*/]/;
+const regexChange = /\d\s[+\-*/]\s\d/;
+const regexDividebyZero = /\d\s\/\s0/;
 
 const display = document.querySelector("#calculatorScreen");
 const buttonContainer = document.querySelector("#buttonContainer");
 
-let inputs = [];
+// let inputs = [];
 
 function operate(operandOne, operator, operandTwo) {
     switch (operator) {
         case "+":
-            add(operandOne, operandTwo);
-            break;
+            return add(operandOne, operandTwo);
+            
         
         case "-":
-            subtract(operandOne, operandTwo);
-            break;
+           return subtract(operandOne, operandTwo);
 
         case "*":
-            multiply(operandOne, operandTwo);
-            break;
+           return multiply(operandOne, operandTwo);
 
         case "/":
-            divide(operandOne, operandTwo);
-            break;
+           return divide(operandOne, operandTwo);
     }
 };
 
@@ -60,7 +57,7 @@ function updateDisplay(event) {
     }
 
     else if (buttonClicked.classList.contains("operator") && regexOperators.test(display.value) && !regexChange.test(display.value) && !display.value.includes(buttonClicked.textContent)) {
-         display.value.replace(regexOperators, buttonClicked.textContent);    
+        display.value = display.value.replace(regexOperators, buttonClicked.textContent);    
     } 
 
     else if ((buttonClicked.classList.contains("operator") || buttonClicked.classList.contains("equals") ) && regexChange.test(display.value) && !regexDividebyZero.test(display.value)) {
@@ -70,10 +67,12 @@ function updateDisplay(event) {
          let operator = inputs[1];
 
          let result = operate(operandOne, operator, operandTwo);
-         display.value = result.toString();     
+         display.value = parseFloat(result.toFixed(3)).toString();     
     }
 
     else if ((buttonClicked.classList.contains("operator") || buttonClicked.classList.contains("equals") ) && regexDividebyZero.test(display.value)) {
          display.value = "ERROR do not divide by 0!";   
     };
 };
+
+buttonContainer.addEventListener("click", updateDisplay);
