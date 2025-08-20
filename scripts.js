@@ -24,6 +24,9 @@ const regexOperators = /[+\-*/]/;
 const regexChange = /\d\s[+\-*/]\s\d/;
 const regexDividebyZero = /\d\s\/\s0/;
 const regexDecimal = /[.]/;
+const regexDecimalTwo = /\d+.\d+\s[+\-*/]\s\d+.\d/
+const regexDecimalThree = /\d+.\d+\s[+\-*/]\s\d+./
+const regexDecimalFour = /\d+.\d+\s[+\-*/]\s\d+/
 
 const display = document.querySelector("#calculatorScreen");
 const buttonContainer = document.querySelector("#buttonContainer");
@@ -63,9 +66,18 @@ function updateDisplay(event) {
          display.value += buttonClicked.textContent;
     }
     
-    else if (buttonClicked.classList.contains("decimal") && regexDecimal.test(display.value)) {
-         
+    else if (buttonClicked.classList.contains("decimal") && regexDecimalTwo.test(display.value)) {
+          
     }
+    
+    else if (buttonClicked.classList.contains("decimal") && regexDecimalThree.test(display.value)) {
+          
+    }
+    
+    else if (buttonClicked.classList.contains("decimal") && regexDecimalFour.test(display.value)) {
+          display.value += buttonClicked.textContent;
+    }
+    
 
     else if (buttonClicked.classList.contains("operator") && !regexOperators.test(display.value) && regexNum.test(display.value)) {      
          display.value += buttonClicked.textContent;   
