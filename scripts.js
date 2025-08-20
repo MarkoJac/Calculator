@@ -64,7 +64,7 @@ function updateDisplay(event) {
     }
     
     else if (buttonClicked.classList.contains("decimal") && regexDecimal.test(display.value)) {
-         display.value = display.value;
+         
     }
 
     else if (buttonClicked.classList.contains("operator") && !regexOperators.test(display.value) && regexNum.test(display.value)) {      
@@ -115,7 +115,7 @@ function updateDisplay(event) {
 
 function inputFilter(event) {
     const inputElement = event.target;
-    const numericalCharacters = /[^0123456789+\-*/\s]/g;
+    const numericalCharacters = /[^0123456789.+\-*/\s]/g;
     inputElement.value = inputElement.value.replace(numericalCharacters, "");
 };
 
