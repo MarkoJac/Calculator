@@ -57,7 +57,7 @@ function updateDisplay(event) {
     }
 
     else if (buttonClicked.classList.contains("operator") && regexOperators.test(display.value) && !regexChange.test(display.value) && !display.value.includes(buttonClicked.textContent)) {
-        display.value = display.value.replace(regexOperators, buttonClicked.textContent);    
+        display.value = display.value.replace(regexOperators, buttonClicked.textContent.replace(/[\s]/g, ""));    
     } 
 
     else if ((buttonClicked.classList.contains("operator") || buttonClicked.classList.contains("equals") ) && regexChange.test(display.value) && !regexDividebyZero.test(display.value)) {
