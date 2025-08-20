@@ -72,7 +72,111 @@ function updateDisplay(event) {
 
     else if ((buttonClicked.classList.contains("operator") || buttonClicked.classList.contains("equals") ) && regexDividebyZero.test(display.value)) {
          display.value = "ERROR do not divide by 0!";   
-    };
+    }
+
+    else if (buttonClicked.classList.contains("clear")) {
+        display.value = ""
+    }
 };
 
+function inputFilter(event) {
+    const inputElement = event.target;
+    const numericalCharacters = /[^0123456789+\-*/\s]/g;
+    inputElement.value = inputElement.value.replace(numericalCharacters, "");
+};
+
+const zero = document.querySelector("#zero");
+const one = document.querySelector("#one");
+const two = document.querySelector("#two");
+const three = document.querySelector("#three");
+const four = document.querySelector("#four");
+const five = document.querySelector("#five");
+const six = document.querySelector("#six");
+const seven = document.querySelector("#seven");
+const eight = document.querySelector("#eight");
+const nine = document.querySelector("#nine");
+const addition = document.querySelector("#addition");
+const point = document.querySelector("#point");
+const subtraction = document.querySelector("#subtract");
+const multiplication = document.querySelector("#multiply");
+const division = document.querySelector("#divide");
+const clear = document.querySelector("#clear");
+const equals = document.querySelector("#equals");
+
+function keyBoardSupport(event) {
+    switch (event.key) {
+        case "0":
+            event.preventDefault();
+            zero.click()
+            break;
+        case "1":
+            event.preventDefault();
+            one.click()
+            break;
+        case "2":
+            event.preventDefault();
+            two.click()
+            break;
+        case "3":
+            event.preventDefault();
+            three.click()
+            break;
+        case "4":
+            event.preventDefault();
+            four.click()
+            break;
+        case "5":
+            event.preventDefault();
+            five.click()
+            break;
+        case "6":
+            event.preventDefault();
+            six.click()
+            break;
+        case "7":
+            event.preventDefault();
+            seven.click()
+            break;
+        case "8":
+            event.preventDefault();
+            eight.click()
+            break;
+        case "9":
+            event.preventDefault();
+            nine.click()
+            break;
+        case ".":
+            event.preventDefault();
+            point.click()
+            break;
+        case "+":
+            event.preventDefault();
+            addition.click();
+            break;
+        case "-":
+            event.preventDefault();
+            subtraction.click()
+            break;
+        case "*":
+            event.preventDefault();
+            multiplication.click()
+            break;
+        case "/":
+            event.preventDefault();
+            division.click()
+            break;
+        case "Enter":
+            event.preventDefault();
+            equals.click()
+            break;
+        case "Backspace":
+            event.preventDefault();
+            clear.click()
+            break;
+
+    }
+}
+
 buttonContainer.addEventListener("click", updateDisplay);
+display.addEventListener("keydown", inputFilter);
+display.addEventListener("keydown", keyBoardSupport);
