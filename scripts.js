@@ -48,7 +48,13 @@ function operate(operandOne, operator, operandTwo) {
 
 function updateDisplay(event) {
     const buttonClicked = event.target;
-    if (buttonClicked.classList.contains("operand")) {
+    if (buttonClicked.classList.contains("operand") && display.classList.contains("sumDisplayed")) {
+        display.value = "";
+        display.value += buttonClicked.textContent;
+        display.classList.toggle("sumDisplayed");
+    }
+   
+    else if (buttonClicked.classList.contains("operand")) {
          display.value += buttonClicked.textContent;
     }
 
@@ -60,12 +66,23 @@ function updateDisplay(event) {
         display.value = display.value.replace(regexOperators, buttonClicked.textContent.replace(/[\s]/g, ""));    
     } 
 
-    else if ((buttonClicked.classList.contains("operator") || buttonClicked.classList.contains("equals") ) && regexChange.test(display.value) && !regexDividebyZero.test(display.value)) {
+    else if (buttonClicked.classList.contains("operator") && regexChange.test(display.value) && !regexDividebyZero.test(display.value)) {
          let inputs = display.value.split(/[\s]/, 3);
          let operandOne = +inputs[0];
          let operandTwo = +inputs[2];
          let operator = inputs[1];
-
+        
+         display.classList.toggle("resultDisplayed");
+         let result = operate(operandOne, operator, operandTwo);
+         display.value = parseFloat(result.toFixed(3)).toString() + buttonClicked.textContent;     
+    }
+    else if (buttonClicked.classList.contains("equals") && regexChange.test(display.value) && !regexDividebyZero.test(display.value)) {
+         let inputs = display.value.split(/[\s]/, 3);
+         let operandOne = +inputs[0];
+         let operandTwo = +inputs[2];
+         let operator = inputs[1];
+        
+         display.classList.toggle("resultDisplayed");
          let result = operate(operandOne, operator, operandTwo);
          display.value = parseFloat(result.toFixed(3)).toString();     
     }
