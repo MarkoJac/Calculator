@@ -58,7 +58,7 @@ button {
 }
 
 #clear {
-    width: 320px;
+    width: 210px;
     background-color: #ed6d6d;
 }
 
@@ -70,3 +70,9 @@ button {
 .operator {
     background-color: #f7b73d;
 }
+
+#backSpace {
+     background-color: #ed6d6d;
+     font-size: 30px;
+}
+

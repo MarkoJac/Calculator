@@ -94,6 +94,14 @@ function updateDisplay(event) {
     else if (buttonClicked.classList.contains("clear")) {
         display.value = ""
     }
+
+    else if (buttonClicked.classList.contains("backSpace") && display.value.endsWith(" ")) {
+        display.value = display.value.slice(0, -3);
+    }
+    
+    else if (buttonClicked.classList.contains("backSpace")) {
+        display.value = display.value.slice(0, -1);
+    }
 };
 
 function inputFilter(event) {
@@ -119,6 +127,7 @@ const multiplication = document.querySelector("#multiply");
 const division = document.querySelector("#divide");
 const clear = document.querySelector("#clear");
 const equals = document.querySelector("#equals");
+const backSpace = document.querySelector("#backSpace")
 
 function keyBoardSupport(event) {
     switch (event.key) {
@@ -188,7 +197,7 @@ function keyBoardSupport(event) {
             break;
         case "Backspace":
             event.preventDefault();
-            clear.click()
+            backSpace.click()
             break;
 
     }
